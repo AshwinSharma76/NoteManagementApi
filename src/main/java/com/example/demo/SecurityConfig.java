@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,7 +32,8 @@ public class SecurityConfig {
 						.requestMatchers("/register", "/login","/home").permitAll()
 						.requestMatchers("/note").hasRole("USER")
 						.requestMatchers("/admin").hasRole("ADMIN")
-						.anyRequest().authenticated())
+						.anyRequest().authenticated()).
+				sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
