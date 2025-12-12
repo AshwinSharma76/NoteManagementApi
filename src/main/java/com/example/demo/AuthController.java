@@ -60,10 +60,10 @@ public class AuthController {
 		}
 	}
 	
-	@GetMapping("/home")
+	@GetMapping("/")
 	public String getHome()
 	{
-		return "Home is Running";
+		return "Welcome to the NoteManagement";
 	}
 	
 }

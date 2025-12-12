@@ -31,7 +31,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) {
 		http.csrf(cf -> cf.disable())
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/register", "/login","/home").permitAll()
+						.requestMatchers("/register", "/login","/").permitAll()
 						.requestMatchers("/note").hasRole("USER")
 						.requestMatchers("/admin").hasRole("ADMIN")
 						.anyRequest().authenticated()).
